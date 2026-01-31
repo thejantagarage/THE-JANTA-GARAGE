@@ -3,251 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Janta Garage | Premium Two-Wheeler Service Goregaon West</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>THE JANTA GARAGE | Premium Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        :root { --brand-orange: #ff4d00; }
-        .bg-brand { background-color: var(--brand-orange); }
-        .text-brand { color: var(--brand-orange); }
-        .border-brand { border-color: var(--brand-orange); }
-        
-        body { font-family: 'Inter', sans-serif; background-color: #0b0b0b; color: #ffffff; scroll-behavior: smooth; }
-        
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
+        :root { --navy: #0b121c; --orange: #e67e22; --dark: #05080d; --white: #ffffff; --gray: #f8f9fa; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--gray); color: var(--navy); }
 
-        .custom-shadow { shadow: 0 10px 30px -10px rgba(255, 77, 0, 0.3); }
-        
-        input, select, textarea { 
-            background-color: #1a1a1a !important; 
-            border: 1px solid #333 !important; 
-            color: white !important; 
-            transition: all 0.3s ease;
+        /* Navigation Bar */
+        header { 
+            background: var(--navy); padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--orange);
         }
-        input:focus { border-color: var(--brand-orange) !important; outline: none; }
-
-        .bike-btn:hover { border-color: var(--brand-orange); transform: translateY(-3px); }
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .brand img { height: 50px; width: 50px; border-radius: 50%; border: 2px solid var(--orange); margin-right: 12px; object-fit: cover; }
         
-        /* Smooth Fade for Gallery */
-        #bike-display { transition: opacity 0.4s ease-in-out; }
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav a { color: white; text-decoration: none; font-size: 0.8rem; font-weight: 600; font-family: 'Orbitron'; transition: 0.3s; }
+        nav a:hover, nav a.active { color: var(--orange); }
+
+        /* Page Management */
+        .page { display: none; min-height: 80vh; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Home Page */
+        .hero { 
+            background: linear-gradient(rgba(11, 18, 28, 0.8), rgba(11, 18, 28, 0.8)), url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2070');
+            background-size: cover; background-position: center; height: 75vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;
+        }
+        .hero h1 { font-family: 'Orbitron'; font-size: 3rem; color: var(--orange); }
+        .btn-main { background: var(--orange); color: white; padding: 15px 40px; text-decoration: none; border-radius: 5px; font-weight: 700; margin-top: 20px; display: inline-block; }
+
+        /* Leadership Section */
+        .leadership-hero { background: var(--navy); color: white; padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .ceo-card { position: relative; border: 4px solid var(--orange); border-radius: 20px; padding: 10px; overflow: hidden; }
+        .ceo-card img { width: 100%; border-radius: 10px; filter: grayscale(10%); transition: 0.5s; }
+        .ceo-card img:hover { filter: grayscale(0%); transform: scale(1.02); }
+        .ceo-text h2 { font-family: 'Orbitron'; color: var(--orange); font-size: 2.5rem; margin-bottom: 20px; }
+        .ceo-text p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; opacity: 0.9; }
+
+        /* Services Grid */
+        .service-container { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .service-card:hover { transform: translateY(-10px); background: var(--navy); color: white; }
+        .service-card i { font-size: 2.5rem; color: var(--orange); margin-bottom: 20px; }
+        .service-card h3 { font-family: 'Orbitron'; margin-bottom: 15px; }
+        .service-card ul { list-style: none; font-size: 0.9rem; }
+        .service-card li { margin-bottom: 10px; }
+
+        /* Booking Form */
+        .book-section { padding: 80px 10%; background: #fff; max-width: 800px; margin: 40px auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-input { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .submit-wa { width: 100%; padding: 18px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 1.1rem; }
+
+        footer { background: var(--dark); color: white; padding: 40px 5%; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .leadership-hero { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="sticky top-0 z-50 bg-black/95 border-b border-zinc-800 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-black tracking-tighter text-brand italic uppercase">The Janta Garage</h1>
-            <div class="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-widest">
-                <a href="#gallery" class="hover:text-brand">The Machines</a>
-                <a href="#services" class="hover:text-brand">Services</a>
-                <a href="#booking" class="hover:text-brand">Book Now</a>
-                <a href="#about" class="hover:text-brand">Leadership</a>
+    <header>
+        <a href="#" class="brand" onclick="showPage('home')">
+            <img src="IMG_5223.jpg" alt="The Janta Garage Logo">
+            <div class="brand-text">
+                <h1 style="font-size: 0.9rem;">THE JANTA GARAGE</h1>
+                <span style="font-size: 0.6rem; color: var(--orange);">PREMIUM BIKE HUB</span>
             </div>
-            <a href="tel:7715877900" class="bg-brand text-white px-4 py-2 rounded font-bold text-xs">7715877900</a>
-        </div>
-    </nav>
-
-    <header class="hero-section min-h-[85vh] flex items-center justify-center text-center px-4">
-        <div class="max-w-4xl">
-            <div class="inline-block border-2 border-brand text-brand px-6 py-1 rounded-full text-sm font-black mb-6 tracking-widest uppercase">Goregaon West, Mumbai</div>
-            <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase italic leading-none">Your Bike.<br><span class="text-brand text-4xl md:text-7xl">Our Responsibility.</span></h1>
-            <p class="text-xl text-gray-300 mb-10 italic max-w-2xl mx-auto">We don’t just service vehicles. We care for your daily partner, your livelihood, and your emotion.</p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#booking" class="bg-brand text-white px-10 py-5 rounded-sm font-black text-lg hover:scale-105 transition uppercase italic">Book Appointment</a>
-                <a href="https://wa.me/9321381400" class="bg-white text-black px-10 py-5 rounded-sm font-black text-lg hover:bg-gray-200 transition uppercase italic">WhatsApp Us</a>
-            </div>
-        </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0)" onclick="showPage('home')" id="link-home" class="active">HOME</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('leadership')" id="link-leadership">LEADERSHIP</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('services')" id="link-services">SERVICES</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('book')" id="link-book">BOOK NOW</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section id="gallery" class="py-24 bg-zinc-900 px-4">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black italic uppercase mb-4">Select Your Machine</h2>
-                <div class="w-20 h-1 bg-brand mx-auto"></div>
+    <main id="home" class="page active">
+        <section class="hero">
+            <h1 style="font-size: 4rem;">RIDE WITH PRIDE</h1>
+            <p style="font-size: 1.2rem; margin: 20px 0;">Premium Maintenance Under Your Pocket Budget.</p>
+            <div style="display:flex; gap:20px;">
+                <a href="javascript:void(0)" onclick="showPage('services')" class="btn-main">View Services</a>
+                <a href="javascript:void(0)" onclick="showPage('book')" class="btn-main" style="background:transparent; border: 2px solid var(--orange);">Book Appointment</a>
             </div>
-
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="relative group overflow-hidden rounded-3xl bg-black border-2 border-zinc-800 p-8">
-                    <img id="bike-display" src="https://images.unsplash.com/photo-1539185441755-769473a23a5e?q=80&w=800&auto=format&fit=crop" 
-                         alt="Bike" class="w-full h-[350px] object-contain">
-                    <div class="mt-6">
-                        <h3 id="bike-title" class="text-3xl font-black italic uppercase text-brand">Royal Enfield</h3>
-                        <p id="bike-desc" class="text-gray-400 text-lg">Specialists in Bullet, Classic, Meteor, and Himalayan. We ensure that legendary thump stays strong.</p>
-                    </div>
+        </section>
+        
+        <section style="padding: 60px 10%; text-align:center;">
+            <h2 style="font-family:'Orbitron'; margin-bottom:30px;">Why Choose The Janta Garage?</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+                <div style="padding:20px; background:white; border-radius:10px;">
+                    <i class="fas fa-tools" style="font-size:2rem; color:var(--orange);"></i>
+                    <h4 style="margin-top:15px;">Expert Mechanics</h4>
                 </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <button onclick="updateBike('Royal Enfield', 'Specialists in Bullet, Classic, Meteor, and Himalayan. We ensure that legendary thump stays strong.', 'https://images.unsplash.com/photo-1539185441755-769473a23a5e?q=80&w=800&auto=format&fit=crop')" class="bike-btn bg-black border border-zinc-800 p-6 rounded-xl transition text-center">
-                        <i class="fas fa-motorcycle text-brand text-2xl mb-2 block"></i>
-                        <span class="text-xs font-black uppercase">Royal Enfield</span>
-                    </button>
-                    <button onclick="updateBike('KTM / Sports', 'Engineered for speed. We handle high-compression tuning and advanced electronics for Duke & RC series.', 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=800&auto=format&fit=crop')" class="bike-btn bg-black border border-zinc-800 p-6 rounded-xl transition text-center">
-                        <i class="fas fa-bolt text-brand text-2xl mb-2 block"></i>
-                        <span class="text-xs font-black uppercase">KTM / Duke</span>
-                    </button>
-                    <button onclick="updateBike('Yamaha MT/FZ', 'Precision handling. We focus on clutch response, suspension, and fuel injection systems for Yamaha.', 'https://images.unsplash.com/photo-1622185135505-2d795003994a?q=80&w=800&auto=format&fit=crop')" class="bike-btn bg-black border border-zinc-800 p-6 rounded-xl transition text-center">
-                        <i class="fas fa-tachometer-alt text-brand text-2xl mb-2 block"></i>
-                        <span class="text-xs font-black uppercase">Yamaha MT/FZ</span>
-                    </button>
-                    <button onclick="updateBike('Honda / Activa', 'Smoothness guaranteed. From Activa to Hornet, we keep your Honda engine running like new.', 'https://images.unsplash.com/photo-1444491741275-3747c53c99b4?q=80&w=800&auto=format&fit=crop')" class="bike-btn bg-black border border-zinc-800 p-6 rounded-xl transition text-center">
-                        <i class="fas fa-scooter text-brand text-2xl mb-2 block"></i>
-                        <span class="text-xs font-black uppercase">Honda / Activa</span>
-                    </button>
-                    <button onclick="updateBike('Bajaj / Pulsar', 'The pride of India. Expert care for Pulsar, Dominar, and Avenger models for better mileage.', 'https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?q=80&w=800&auto=format&fit=crop')" class="bike-btn bg-black border border-zinc-800 p-6 rounded-xl transition text-center">
-                        <i class="fas fa-wind text-brand text-2xl mb-2 block"></i>
-                        <span class="text-xs font-black uppercase">Bajaj / Pulsar</span>
-                    </button>
-                    <button onclick="updateBike('Premium Bikes', 'Handling all two-wheelers including Suzuki, TVS, and Hero with equal detail and passion.', 'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?q=80&w=800&auto=format&fit=crop')" class="bike-btn bg-black border border-zinc-800 p-6 rounded-xl transition text-center">
-                        <i class="fas fa-crown text-brand text-2xl mb-2 block"></i>
-                        <span class="text-xs font-black uppercase">Others</span>
-                    </button>
+                <div style="padding:20px; background:white; border-radius:10px;">
+                    <i class="fas fa-wallet" style="font-size:2rem; color:var(--orange);"></i>
+                    <h4 style="margin-top:15px;">Affordable Price</h4>
+                </div>
+                <div style="padding:20px; background:white; border-radius:10px;">
+                    <i class="fas fa-shipping-fast" style="font-size:2rem; color:var(--orange);"></i>
+                    <h4 style="margin-top:15px;">Quick Service</h4>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <main id="leadership" class="page">
+        <section class="leadership-hero">
+            <div class="ceo-card">
+                <img src="IMG_5223.jpg" alt="CEO Ms. Sarul Singh">
+            </div>
+            <div class="ceo-text">
+                <h2>MEET THE CEO</h2>
+                <p><strong>Ms. Sarul Singh</strong> is a visionary businesswoman with a passion for innovation and excellence. With a keen eye for detail and a deep understanding of the two-wheeler industry, she has transformed THE JANTA GARAGE into a trusted destination for bike owners.</p>
+                <p>Her leadership combines strategic thinking, practical solutions, and a commitment to customer satisfaction. Always ahead with fresh ideas, she ensures that every service meets the highest standards of quality.</p>
+                <div style="margin-top:20px; border-left: 4px solid var(--orange); padding-left: 20px; font-style: italic;">
+                    "Our goal isn't just to fix bikes; it's to fuel the passion of every rider who trusts us."
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="services" class="page">
+        <div style="text-align:center; padding-top:60px;">
+            <h2 style="font-family:'Orbitron'; font-size:2.5rem;">Our Service Menu</h2>
+            <p>Specialized solutions for Bullet, Sports Bikes & Scooty</p>
         </div>
-    </section>
-
-    <section id="services" class="py-24 px-4 bg-black">
-        <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-4xl font-black uppercase italic mb-8 underline decoration-brand">Complete Care</h2>
-                <ul class="space-y-4">
-                    <li class="flex items-center gap-4 bg-zinc-900 p-4 rounded-lg"><i class="fas fa-tools text-brand"></i> Full Bike Servicing & Tuning</li>
-                    <li class="flex items-center gap-4 bg-zinc-900 p-4 rounded-lg"><i class="fas fa-oil-can text-brand"></i> Engine, Gear & Brake Oil Change</li>
-                    <li class="flex items-center gap-4 bg-zinc-900 p-4 rounded-lg"><i class="fas fa-battery-full text-brand"></i> Electrical & Battery Inspection</li>
-                    <li class="flex items-center gap-4 bg-zinc-900 p-4 rounded-lg"><i class="fas fa-cogs text-brand"></i> Chain Clean & Lubrication</li>
-                    <li class="flex items-center gap-4 bg-zinc-900 p-4 rounded-lg"><i class="fas fa-ambulance text-brand"></i> Accident & Repair Assistance</li>
+        <div class="service-container">
+            <div class="service-card">
+                <i class="fas fa-motorcycle"></i>
+                <h3>Mechanical</h3>
+                <ul>
+                    <li>Engine Oil & Tuning</li>
+                    <li>Clutch Adjustment & Repair</li>
+                    <li>Transmission & Gear Service</li>
+                    <li>Spark Plug Replacement</li>
                 </ul>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-zinc-900 p-8 rounded-3xl border border-zinc-800 text-center">
-                    <h3 class="text-3xl font-black text-brand mb-2 italic">0%</h3>
-                    <p class="text-xs font-bold uppercase tracking-widest">No Shortcuts</p>
-                </div>
-                <div class="bg-zinc-900 p-8 rounded-3xl border border-zinc-800 text-center">
-                    <h3 class="text-3xl font-black text-brand mb-2 italic">100%</h3>
-                    <p class="text-xs font-bold uppercase tracking-widest">Genuine Parts</p>
-                </div>
-                <div class="bg-zinc-900 p-8 rounded-3xl border border-zinc-800 text-center">
-                    <h3 class="text-3xl font-black text-brand mb-2 italic">Same</h3>
-                    <p class="text-xs font-bold uppercase tracking-widest">Day Service</p>
-                </div>
-                <div class="bg-zinc-900 p-8 rounded-3xl border border-zinc-800 text-center">
-                    <h3 class="text-3xl font-black text-brand mb-2 italic">Honest</h3>
-                    <p class="text-xs font-bold uppercase tracking-widest">Pricing</p>
-                </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Electrical</h3>
+                <ul>
+                    <li>Battery Check & Replacement</li>
+                    <li>LED & Accessory Installation</li>
+                    <li>Wiring & Horn Repair</li>
+                    <li>Indicators & Headlights</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Cosmetics</h3>
+                <ul>
+                    <li>Denting & Full Body Painting</li>
+                    <li>Seat Repair & Replacement</li>
+                    <li>Custom Stickers/Decals</li>
+                    <li>Windshield Installation</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Safety</h3>
+                <ul>
+                    <li>Brake Inspection (Disc/Drum)</li>
+                    <li>Brake Fluid Replacement</li>
+                    <li>Anti-Theft Kit Installation</li>
+                    <li>Wheel Alignment</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section id="booking" class="py-24 px-4 bg-zinc-900">
-        <div class="container mx-auto max-w-5xl">
-            <div class="grid md:grid-cols-2 gap-0 bg-black rounded-3xl overflow-hidden shadow-2xl border border-zinc-800">
-                <div class="p-12 bg-brand text-black">
-                    <h2 class="text-4xl font-black uppercase italic mb-6">Reserve Your Slot</h2>
-                    <p class="font-bold mb-8 uppercase text-sm leading-relaxed">Book in 30 seconds. We'll have your bike ready for the road while you manage your day.</p>
-                    <div class="space-y-6 font-bold uppercase text-xs">
-                        <p><i class="fas fa-phone-alt mr-2"></i> Service: 7715877900</p>
-                        <p><i class="fab fa-whatsapp mr-2"></i> WhatsApp: 9321381400</p>
-                        <p><i class="fas fa-map-marker-alt mr-2"></i> Goregaon West, Mumbai</p>
-                    </div>
+    <main id="book" class="page">
+        <div class="book-section">
+            <h2 style="font-family:'Orbitron'; text-align:center; margin-bottom:30px; color:var(--orange);">BOOK APPOINTMENT</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="custName" class="form-input" placeholder="Your Name" required>
                 </div>
-                <div class="p-10">
-                    <form id="bookingForm" class="space-y-4">
-                        <input type="text" id="name" placeholder="Full Name" class="w-full p-4 rounded" required>
-                        <input type="tel" id="phone" placeholder="Phone Number" class="w-full p-4 rounded" required>
-                        <input type="text" id="model" placeholder="Bike Model (e.g. Pulsar 220)" class="w-full p-4 rounded" required>
-                        <select id="service" class="w-full p-4 rounded">
-                            <option>Full General Service</option>
-                            <option>Oil & Brake Check</option>
-                            <option>Engine Issue</option>
-                            <option>Accident Repair</option>
-                        </select>
-                        <textarea id="msg" placeholder="Tell us about the problem..." rows="3" class="w-full p-4 rounded"></textarea>
-                        <button type="submit" class="w-full bg-brand text-white font-black py-5 rounded uppercase italic hover:bg-orange-600 transition tracking-tighter text-lg">
-                            Confirm on WhatsApp
-                        </button>
-                    </form>
+                <div class="form-group">
+                    <label>Bike Model</label>
+                    <input type="text" id="custBike" class="form-input" placeholder="e.g. Royal Enfield 350" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>Service Required</label>
+                    <select id="custService" class="form-input">
+                        <option>Full Engine Tuning</option>
+                        <option>General Maintenance</option>
+                        <option>Custom Modification</option>
+                        <option>Electrical Repair</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-wa">
+                    <i class="fab fa-whatsapp"></i> SEND BOOKING REQUEST
+                </button>
+            </form>
         </div>
-    </section>
+    </main>
 
-    <section id="about" class="py-24 px-4 bg-black border-t border-zinc-900">
-        <div class="container mx-auto flex flex-col md:flex-row items-center gap-16">
-            <div class="md:w-1/2">
-                <h2 class="text-brand font-black uppercase tracking-widest text-sm mb-4">Leadership & Vision</h2>
-                <h3 class="text-4xl font-black italic uppercase mb-6">Led by a Woman Entrepreneur</h3>
-                <p class="text-gray-400 text-lg leading-relaxed mb-6">
-                    The Janta Garage isn't just a business—it's a vision of discipline and reliability. Led by a strong woman leader associated with <strong>Shivam Real Estate</strong> and <strong>JP Moga PG Accommodations</strong>, we operate with a level of transparency and professional care that is rare in the industry.
-                </p>
-                <div class="border-l-4 border-brand p-6 bg-zinc-900 italic text-gray-200">
-                    "We believe good service brings customers back—not advertisements alone."
-                </div>
-            </div>
-            <div class="md:w-1/2 grid grid-cols-1 gap-6">
-                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
-                    <h4 class="text-brand font-black uppercase mb-2 italic">Honesty First</h4>
-                    <p class="text-gray-400 text-sm">We explain every bolt and nut before we start work. No surprises, no hidden bills.</p>
-                </div>
-                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
-                    <h4 class="text-brand font-black uppercase mb-2 italic">Family Culture</h4>
-                    <p class="text-gray-400 text-sm">Our workers are family, and we treat your bike like it's our own daily ride.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 bg-black border-t border-zinc-900 px-4">
-        <div class="container mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left mb-12">
-            <div>
-                <h4 class="text-white font-black uppercase mb-6">Address</h4>
-                <p class="text-gray-500 text-sm italic leading-relaxed">Shop No. 6, Gulraj Building, Laxmi Nagar, Near Kali Mata Mandir, In Front of Masjid, Goregaon West, Mumbai – 400104</p>
-            </div>
-            <div>
-                <h4 class="text-white font-black uppercase mb-6">Contact</h4>
-                <p class="text-brand font-black text-xl mb-2 italic underline">7715877900</p>
-                <p class="text-gray-500 text-sm uppercase font-bold tracking-widest">WhatsApp: 9321381400</p>
-            </div>
-            <div>
-                <h4 class="text-red-600 font-black uppercase mb-6">Emergency / Feedback</h4>
-                <p class="text-white font-black text-2xl mb-1 italic">9369481400</p>
-                <p class="text-gray-600 text-xs">Direct access to leadership for complaints.</p>
-            </div>
-        </div>
-        <div class="text-center text-zinc-700 text-xs font-bold uppercase tracking-[0.4em] pt-8 border-t border-zinc-900">
-            © 2026 THE JANTA GARAGE | MUMBAI
+    <footer>
+        <p>📍 Shop No. 6, Gulraj Trinity, Goregaon West, Mumbai</p>
+        <p>📞 7715877900 | 9321381400</p>
+        <div style="margin-top:20px; font-size:1.5rem;">
+            <a href="#" style="color:var(--orange); margin:0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color:var(--orange); margin:0 10px;"><i class="fab fa-facebook"></i></a>
         </div>
     </footer>
 
     <script>
-        // Gallery Function
-        function updateBike(title, desc, imgUrl) {
-            const img = document.getElementById('bike-display');
-            img.style.opacity = '0';
-            setTimeout(() => {
-                img.src = imgUrl;
-                document.getElementById('bike-title').innerText = title;
-                document.getElementById('bike-desc').innerText = desc;
-                img.style.opacity = '1';
-            }, 400);
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('link-' + pageId).classList.add('active');
+            window.scrollTo(0,0);
         }
 
-        // WhatsApp Form Function
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const bike = document.getElementById('model').value;
-            const service = document.getElementById('service').value;
-            const msg = document.getElementById('msg').value;
-
-            const text = `*NEW BOOKING: JANTA GARAGE*%0A--------------------------%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Bike:* ${bike}%0A*Service:* ${service}%0A*Issue:* ${msg}`;
-            
-            window.open(`https://wa.me/9321381400?text=${text}`, '_blank');
+            const name = document.getElementById('custName').value;
+            const bike = document.getElementById('custBike').value;
+            const service = document.getElementById('custService').value;
+            const msg = `*New Booking Request*%0A*Name:* ${name}%0A*Bike:* ${bike}%0A*Service:* ${service}`;
+            window.open(`https://wa.me/917715877900?text=${msg}`, '_blank');
         });
     </script>
 </body>
