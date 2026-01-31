@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE JANTA GARAGE | Premium Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --navy: #0b121c; --orange: #e67e22; --dark: #05080d; --white: #ffffff; --gray: #f8f9fa; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--gray); color: var(--navy); }
+
+        /* Navigation Bar */
+        header { 
+            background: var(--navy); padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--orange);
+        }
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .brand img { height: 50px; width: 50px; border-radius: 50%; border: 2px solid var(--orange); margin-right: 12px; object-fit: cover; }
+        
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav a { color: white; text-decoration: none; font-size: 0.8rem; font-weight: 600; font-family: 'Orbitron'; transition: 0.3s; }
+        nav a:hover, nav a.active { color: var(--orange); }
+
+        /* Page Management */
+        .page { display: none; min-height: 80vh; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Home Page */
+        .hero { 
+            background: linear-gradient(rgba(11, 18, 28, 0.8), rgba(11, 18, 28, 0.8)), url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2070');
+            background-size: cover; background-position: center; height: 75vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;
+        }
+        .hero h1 { font-family: 'Orbitron'; font-size: 3rem; color: var(--orange); }
+        .btn-main { background: var(--orange); color: white; padding: 15px 40px; text-decoration: none; border-radius: 5px; font-weight: 700; margin-top: 20px; display: inline-block; }
+
+        /* Leadership Section */
+        .leadership-hero { background: var(--navy); color: white; padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .ceo-card { position: relative; border: 4px solid var(--orange); border-radius: 20px; padding: 10px; overflow: hidden; }
+        .ceo-card img { width: 100%; border-radius: 10px; filter: grayscale(10%); transition: 0.5s; }
+        .ceo-card img:hover { filter: grayscale(0%); transform: scale(1.02); }
+        .ceo-text h2 { font-family: 'Orbitron'; color: var(--orange); font-size: 2.5rem; margin-bottom: 20px; }
+        .ceo-text p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; opacity: 0.9; }
+
+        /* Services Grid */
+        .service-container { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .service-card:hover { transform: translateY(-10px); background: var(--navy); color: white; }
+        .service-card i { font-size: 2.5rem; color: var(--orange); margin-bottom: 20px; }
+        .service-card h3 { font-family: 'Orbitron'; margin-bottom: 15px; }
+        .service-card ul { list-style: none; font-size: 0.9rem; }
+        .service-card li { margin-bottom: 10px; }
+
+        /* Booking Form */
+        .book-section { padding: 80px 10%; background: #fff; max-width: 800px; margin: 40px auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-input { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .submit-wa { width: 100%; padding: 18px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 1.1rem; }
+
+        footer { background: var(--dark); color: white; padding: 40px 5%; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .leadership-hero { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="brand" onclick="showPage('home')">
+            <img src="IMG_5223.jpg" alt="The Janta Garage Logo">
+            <div class="brand-text">
+                <h1 style="font-size: 0.9rem;">THE JANTA GARAGE</h1>
+                <span style="font-size: 0.6rem; color: var(--orange);">PREMIUM BIKE HUB</span>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0)" onclick="showPage('home')" id="link-home" class="active">HOME</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('leadership')" id="link-leadership">LEADERSHIP</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('services')" id="link-services">SERVICES</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('book')" id="link-book">BOOK NOW</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="home" class="page active">
+        <section class="hero">
+            <h1 style="font-size: 4rem;">RIDE WITH PRIDE</h1>
+            <p style="font-size: 1.2rem; margin: 20px 0;">Premium Maintenance Under Your Pocket Budget.</p>
+            <div style="display:flex; gap:20px;">
+                <a href="javascript:void(0)" onclick="showPage('services')" class="btn-main">View Services</a>
+                <a href="javascript:void(0)" onclick="showPage('book')" class="btn-main" style="background:transparent; border: 2px solid var(--orange);">Book Appointment</a>
+            </div>
+        </section>
+        
+        <section style="padding: 60px 10%; text-align:center;">
+            <h2 style="font-family:'Orbitron'; margin-bottom:30px;">Why Choose The Janta Garage?</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+                <div style="padding:20px; background:white; border-radius:10px;">
+                    <i class="fas fa-tools" style="font-size:2rem; color:var(--orange);"></i>
+                    <h4 style="margin-top:15px;">Expert Mechanics</h4>
+                </div>
+                <div style="padding:20px; background:white; border-radius:10px;">
+                    <i class="fas fa-wallet" style="font-size:2rem; color:var(--orange);"></i>
+                    <h4 style="margin-top:15px;">Affordable Price</h4>
+                </div>
+                <div style="padding:20px; background:white; border-radius:10px;">
+                    <i class="fas fa-shipping-fast" style="font-size:2rem; color:var(--orange);"></i>
+                    <h4 style="margin-top:15px;">Quick Service</h4>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="leadership" class="page">
+        <section class="leadership-hero">
+            <div class="ceo-card">
+                <img src="IMG_5223.jpg" alt="CEO Ms. Sarul Singh">
+            </div>
+            <div class="ceo-text">
+                <h2>MEET THE CEO</h2>
+                <p><strong>Ms. Sarul Singh</strong> is a visionary businesswoman with a passion for innovation and excellence. With a keen eye for detail and a deep understanding of the two-wheeler industry, she has transformed THE JANTA GARAGE into a trusted destination for bike owners.</p>
+                <p>Her leadership combines strategic thinking, practical solutions, and a commitment to customer satisfaction. Always ahead with fresh ideas, she ensures that every service meets the highest standards of quality.</p>
+                <div style="margin-top:20px; border-left: 4px solid var(--orange); padding-left: 20px; font-style: italic;">
+                    "Our goal isn't just to fix bikes; it's to fuel the passion of every rider who trusts us."
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="services" class="page">
+        <div style="text-align:center; padding-top:60px;">
+            <h2 style="font-family:'Orbitron'; font-size:2.5rem;">Our Service Menu</h2>
+            <p>Specialized solutions for Bullet, Sports Bikes & Scooty</p>
+        </div>
+        <div class="service-container">
+            <div class="service-card">
+                <i class="fas fa-motorcycle"></i>
+                <h3>Mechanical</h3>
+                <ul>
+                    <li>Engine Oil & Tuning</li>
+                    <li>Clutch Adjustment & Repair</li>
+                    <li>Transmission & Gear Service</li>
+                    <li>Spark Plug Replacement</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Electrical</h3>
+                <ul>
+                    <li>Battery Check & Replacement</li>
+                    <li>LED & Accessory Installation</li>
+                    <li>Wiring & Horn Repair</li>
+                    <li>Indicators & Headlights</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Cosmetics</h3>
+                <ul>
+                    <li>Denting & Full Body Painting</li>
+                    <li>Seat Repair & Replacement</li>
+                    <li>Custom Stickers/Decals</li>
+                    <li>Windshield Installation</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Safety</h3>
+                <ul>
+                    <li>Brake Inspection (Disc/Drum)</li>
+                    <li>Brake Fluid Replacement</li>
+                    <li>Anti-Theft Kit Installation</li>
+                    <li>Wheel Alignment</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <main id="book" class="page">
+        <div class="book-section">
+            <h2 style="font-family:'Orbitron'; text-align:center; margin-bottom:30px; color:var(--orange);">BOOK APPOINTMENT</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="custName" class="form-input" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Bike Model</label>
+                    <input type="text" id="custBike" class="form-input" placeholder="e.g. Royal Enfield 350" required>
+                </div>
+                <div class="form-group">
+                    <label>Service Required</label>
+                    <select id="custService" class="form-input">
+                        <option>Full Engine Tuning</option>
+                        <option>General Maintenance</option>
+                        <option>Custom Modification</option>
+                        <option>Electrical Repair</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-wa">
+                    <i class="fab fa-whatsapp"></i> SEND BOOKING REQUEST
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>📍 Shop No. 6, Gulraj Trinity, Goregaon West, Mumbai</p>
+        <p>📞 7715877900 | 9321381400</p>
+        <div style="margin-top:20px; font-size:1.5rem;">
+            <a href="#" style="color:var(--orange); margin:0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color:var(--orange); margin:0 10px;"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('link-' + pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const bike = document.getElementById('custBike').value;
+            const service = document.getElementById('custService').value;
+            const msg = `*New Booking Request*%0A*Name:* ${name}%0A*Bike:* ${bike}%0A*Service:* ${service}`;
+            window.open(`https://wa.me/917715877900?text=${msg}`, '_blank');
+        });
+    </script>
+</body>
+</html>
